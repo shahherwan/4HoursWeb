@@ -1,6 +1,6 @@
 <?php
 require 'vendor/autoload.php';
-
+$id = $_GET['id'];
 // this can be found from the firebase console database tab
         const DEFAULT_URL = 'https://hours-31412.firebaseio.com/';
 // this is the secret, going to be deprecated
@@ -10,15 +10,25 @@ require 'vendor/autoload.php';
 // in this case, a jsontree starting from firebase/example will be created
         const DEFAULT_PATH = '/firebase/example';
 $firebase = new \Firebase\FirebaseLib(DEFAULT_URL, DEFAULT_TOKEN);
+
 $path = '/user/';
 $value = $firebase->get($path);
 $arr = json_decode($value, true);
+
+//Read
+$path = '/user/';
+//$value = $firebase->get($path);
+//print_r($value);
+$value = $firebase->get($path,('id' == $id));
+
+
+
 foreach ($arr as $key => $value1) {
     $test = array(
         "key" => $key,
-//        "name" => $value1['name'],
-////        "email" => $value1['email'],
-////        "jobs" => $value1['numberOfJobs'],
+        "name" => $value1['name'],
+        "email" => $value1['email'],
+        "jobs" => $value1['numJobs'],
         
     );
     $valueR[] = $test;
@@ -42,15 +52,15 @@ foreach ($arr as $key => $value1) {
     <div class="container">
         <?php include 'navbar.php' ?>
         <table id="defaultTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
-            <tr><th>Name</th><th>email</th><th>Number Of Jobs</th><th>Accept</th><th>Decline</th></tr>
+            <tr><th>Name</th><th>email</th><th>Number Of Jobs</th><th/></tr>
             <?php for ($i = 0; $i < count($valueR); $i++) { ?>
                 <tr>
                     <td><?php echo $valueR[$i]['name'] ?></td>
                     <td><?php echo $valueR[$i]['email'] ?></td>
                     <td><?php echo $valueR[$i]['jobs'] ?></td>
                   
-                    <td><a href="doAccept=<?php echo $valueR[$i]['key'] ?>" class="btn btn-primary" role="button">Accept</a></td>
-                    <td><a href="doDecline=<?php echo $valueR[$i]['key'] ?>" class="btn btn-primary" role="button">Decline</a></td>
+                    <td><a href="doAccept.php?id=<?php echo $id ?>" class="btn btn-primary" role="button">Accept</a></td>
+                    
 
                 </tr>
             <?php } ?>

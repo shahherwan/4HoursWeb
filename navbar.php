@@ -26,7 +26,7 @@
             <?php if (isset($_SESSION['user_id'])) { ?>
                 <li> <a href="logout.php">Logout</a></li>
             <?php } else { ?>
-                <li> <a href="create.php">Create Job</a></li> 
+                <li> <a href="createJob.php">Create Job</a></li> 
                 <li><a href="allSubmittedJobs.php">Review</a></li>
                 <li><a href="login.html">Contact</a></li>
             <?php } ?>

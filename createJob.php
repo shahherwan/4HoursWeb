@@ -8,10 +8,12 @@
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
     </head>
     <body>
-        <?php
-        ?>
+       
         <div class="container">
-            <h3>Kok Cheng - Create Job Vacancy</h3>
+             <?php
+        include 'navbar.php';
+        ?>
+            <h3>Create Job Vacancy</h3>
             <form class="form-horizontal" method="post" action="doCreateJob.php" enctype="multipart/form-data">
 
                 <div class="form-group">

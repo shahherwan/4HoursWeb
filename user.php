@@ -1,29 +1,3 @@
-<?php
-require 'vendor/autoload.php';
-
-// this can be found from the firebase console database tab
-        const DEFAULT_URL = 'https://hours-31412.firebaseio.com/';
-// this is the secret, going to be deprecated
-// Go to Project Settings --> Service Accounts --> Database Secrets
-        const DEFAULT_TOKEN = 'qArAO4BV1fqhLwJSOdxxWZ5qovCEmwZDO1oCuQiK';
-// This is the path to the database
-// in this case, a jsontree starting from firebase/example will be created
-        const DEFAULT_PATH = '/firebase/example';
-$firebase = new \Firebase\FirebaseLib(DEFAULT_URL, DEFAULT_TOKEN);
-$path = '/user/';
-$value = $firebase->get($path);
-$arr = json_decode($value, true);
-foreach ($arr as $key => $value1) {
-    $test = array(
-        "key" => $key,
-        "name" => $value1['name'],
-        "email" => $value1['email'],
-        "jobs" => $value1['numberOfJobs'],
-        "rating" => $value1['rating']
-    );
-    $valueR[] = $test;
-}
-?>
 <html>
     <head>
     <head>
@@ -40,57 +14,37 @@ foreach ($arr as $key => $value1) {
 <body>
     <div class="container">
             <div class="row">
-                <h1 id="Header">Add New Stall</h1>
+                <h1 id="Header">Sign Up</h1>
                 <hr/>
-                <form class="form-horizontal" method="post" id="form" action="doAddStall.php">
-                    <input type="hidden" name="hid" value="<?php echo $arr['key'] ?>">
-                    <input type="hidden" name="hname" value="<?php echo $arr['name'] ?>">
-                    <div class="form-group">
-                        <label for="approve" class="col-sm-3 control-label">Approve:</label>
+                <form class="form-horizontal" method="post" id="form" action="doUser.php">
+                
+                    <div class="form-group">   
+                        <label for="name" class="col-sm-3 control-label">Name:</label>
                         <div class="col-sm-9">
-                            <input class="radio-inline" type="radio" id="yes" name="approve" value="Yes"/>Yes
-                            <input class="radio-inline" type="radio" id="no" name="approve" value="No"/>No
+                            <input type="text" id="name" name="name" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">   
-                        <label for="comment" class="col-sm-3 control-label">Comment:</label>
+                        <label for="phone" class="col-sm-3 control-label">Phone Number:</label>
                         <div class="col-sm-9">
-                            <input type="text" id="comment" name="comment" class="form-control"/>
+                            <input type="text" id="phone" name="phone" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="like" class="col-sm-3 control-label">like:</label>
+                        <label for="email" class="col-sm-3 control-label">Email:</label>
                         <div class="col-sm-9">
-                            <input type="text" id="like" name="like" class="form-control" />
+                            <input type="text" id="email" name="email" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="food" class="col-sm-3 control-label">Stall Food:</label>
+                        <label for="numJobs" class="col-sm-3 control-label">Number of jobs:</label>
                         <div class="col-sm-9">
-                            <input type="text" id="food" name="food" class="form-control" />
+                            <input type="text" id="numJobs" name="numJobs" class="form-control" />
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="stallName" class="col-sm-3 control-label">Stall Name:</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="stallName" name="stallName" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="price" class="col-sm-3 control-label">Stall Price:</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="price" name="price" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="username" class="col-sm-3 control-label">Username:</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="username" name="username" class="form-control" />
-                        </div>
-                    </div>                
+                    </div>                                  
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <input class="btn btn-primary" type="submit" value="Add"/>
+                            <input class="btn btn-primary" type="submit" value="Sign up"/>
                         </div>
                     </div>
                 </form>

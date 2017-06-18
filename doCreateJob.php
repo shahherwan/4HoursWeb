@@ -42,6 +42,9 @@ $path = 'Job_List/';
 $value = array("Job_Title" => $jobTitle, "Job_Description" => $jobDesc,
     "Salary" => $salary, "Date" => $date, "Time" => $time,
     "Location" => $location, "Urgent" => $urgent,
-    "Dynamic_Pricing" => $dynamicPricing);
+    "Dynamic_Pricing" => $dynamicPricing, "status" => false);
 $firebase->push($path, $value);
+
+header('Location: review.php');
+
 ?>

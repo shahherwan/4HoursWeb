@@ -13,18 +13,22 @@ $firebase = new \Firebase\FirebaseLib(DEFAULT_URL, DEFAULT_TOKEN);
 $path = '/Job_List/';
 $value = $firebase->get($path);
 $arr = json_decode($value, true);
+$valueR = array();
 foreach ($arr as $key => $value1) {
+    if($value1['status'] === false){
     $test = array(
         "key" => $key,
         "title" => $value1['Job_Title'],
     );
-    $valueR[] = $test;
+     $valueR[] = $test;
+    };
+   
 }
 ?>
 <html>
     <head>
    
-        <title>Hawker Center</title>
+        <title>4 Hours</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -41,20 +45,12 @@ foreach ($arr as $key => $value1) {
             <tr><th>Job Title</th></tr>
             <?php for ($i = 0; $i < count($valueR); $i++) { ?>
                 <tr>
-
                     <td>
-                        <a href="review.php"> <?php echo $valueR[$i]['title'] ?></a>
-                        <?php $_SESSION['key'] =  $valueR[$i]['key'] ;
-                             
-                                ?>
-                       
+                        <a href="review.php?id=<?php echo $valueR[$i]['key'] ?>"> <?php echo $valueR[$i]['title'] ?></a>
+                                       
                        </td>
-
-<!--                    <td><a href="doAccept=<?php echo $valueR[$i]['key'] ?>" class="btn btn-primary" role="button">Accept</a></td>
-                    <td><a href="doDecline=<?php echo $valueR[$i]['key'] ?>" class="btn btn-primary" role="button">Decline</a></td>-->
-
                 </tr>
-            <?php } ?>
+           <?php } ?>
         </table>
     </div>
 </body>
