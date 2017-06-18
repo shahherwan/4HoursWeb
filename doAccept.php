@@ -17,6 +17,20 @@ $firebase = new \Firebase\FirebaseLib(DEFAULT_URL, DEFAULT_TOKEN);
 $path = 'Job_List/'.$id.'/status';
 $value = true;
 $firebase->set($path, $value);
+$status = "";
+$to = "shahherwan@gmail.com";
+$subject = "You have accepted";
+$message = "Helo Herwan, please come in on time";
+$from = "andrerexdianarchie@gmail.com";
+$headers = "From: $from";
+$emailSent = mail($to,$subject,$message,$headers);
+        if($emailSent){
+            $status .= "The email to $to has been sent. <br/>";
+        } else {
+            $status .= "Process failed for $to . Please try again";
+        }
+echo "Mail Sent.";
+echo $status;
  header('Location: http://localhost/4Hours/allSubmittedJobs.php');
 
 ?>

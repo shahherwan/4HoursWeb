@@ -15,12 +15,6 @@ $path = '/user/';
 $value = $firebase->get($path);
 $arr = json_decode($value, true);
 
-//Read
-$path = '/user/';
-//$value = $firebase->get($path);
-//print_r($value);
-$value = $firebase->get($path,('id' == $id));
-
 
 
 foreach ($arr as $key => $value1) {
@@ -28,8 +22,7 @@ foreach ($arr as $key => $value1) {
         "key" => $key,
         "name" => $value1['name'],
         "email" => $value1['email'],
-        "jobs" => $value1['numJobs'],
-        
+        "jobs" => $value1['numJobs'],       
     );
     $valueR[] = $test;
 }

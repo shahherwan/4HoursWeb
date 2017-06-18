@@ -12,6 +12,7 @@ require 'vendor/autoload.php';
         const DEFAULT_PATH = '/firebase/example';
 $firebase = new \Firebase\FirebaseLib(DEFAULT_URL, DEFAULT_TOKEN);
 
+
 $jobTitle = $_POST['jobTitle'];
 $jobDesc = $_POST['jobDesc'];
 $salary = $_POST['salary'];
@@ -22,9 +23,9 @@ $urgent = $_POST['urgent'];
 $dynamicPricing = $_POST['dynamicPricing'];
 
 $status = "";
-$to = "15017103@myrp.edu.sg";
-$subject = "Test mail";
-$message = "Hello! This is a simple email message.";
+$to = "shahherwan@gmail.com";
+$subject = "New Job Vacancy Available";
+$message = "Hello! there is new job vacancy available, please go to the following link";
 $from = "andrerexdianarchie@gmail.com";
 $headers = "From: $from";
 $emailSent = mail($to,$subject,$message,$headers);
@@ -45,6 +46,6 @@ $value = array("Job_Title" => $jobTitle, "Job_Description" => $jobDesc,
     "Dynamic_Pricing" => $dynamicPricing, "status" => false);
 $firebase->push($path, $value);
 
-header('Location: review.php');
+header('Location: http://localhost/4Hours/allSubmittedJobs.php');
 
 ?>
